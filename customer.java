@@ -32,7 +32,7 @@ public class customer {
     //Call before booking a ride to check wether the customer has enough balance in his waller(300 Rs atleast)
     bool isEnough()
     {
-        reteurn (wallet >= 300);   
+        return (wallet >= 300);   
     }
     //Add money to the wallet
     void addBalance(int incr)
