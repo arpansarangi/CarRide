@@ -20,6 +20,7 @@ public class customer {
         this.destination = destination;
         this.userName = userName;
         this.password = password;
+        this.phoneNumber = phoneNumber;
         this.emailID = emailID;
         this.wallet = wallet;
     }
