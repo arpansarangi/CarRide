@@ -24,4 +24,16 @@ public class customer {
         this.emailID = emailID;
         this.wallet = wallet;
     }
+    int balance()
+    {
+        return wallet;
+    }
+    bool isEnough()
+    {
+        reteurn (waller >= 300);   
+    }
+    void addBalance(int incr)
+    {
+        this.wallet += incr;
+    }
 }
