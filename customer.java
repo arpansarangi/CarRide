@@ -30,7 +30,7 @@ public class customer {
     }
     bool isEnough()
     {
-        reteurn (waller >= 300);   
+        reteurn (wallet >= 300);   
     }
     void addBalance(int incr)
     {
