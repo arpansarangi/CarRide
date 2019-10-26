@@ -1,21 +1,22 @@
 package com.mycompany.arabella;
 import java.util.*; 
-public class CarRide {
+public class NewClass{
     public static void main(String[] args)
     {
         //INITIALIZE ALL OF THE DRIVER OBJECTS HERE
-        
-        floydWarshall();
+        Map<Integer, Character> alpha = new HashMap<Integer, Character>();//Assigns the value 1 to 'a', 2 to 'b' and so on...
+        Map<String, Integer> myMap = new HashMap<String, Integer>();//Assigns the value 1 to "aa", 2 to "ab' and so on...
+        int [][]dp = new int[39][39];
+        floydWarshall(alpha,myMap,dp);
+        //dp[i][j] now holds the shortest path between vertice i and j.
     }
-    static void floydWarshall()
+    static void floydWarshall(Map<Integer, Character> alpha, Map<String, Integer> myMap, int[][] dp)
     {
         //To map alphabets to integers {a,1},{b,2}....
-        Map<Integer, Character> alpha = new HashMap<Integer, Character>();
         int k = 1;
         for(char x = 'a'; x <= 'z'; x++)
             alpha.put(k++,x);
         //To give all of the Strings a certain value
-        Map<String, Integer> myMap = new HashMap<String, Integer>();
         k = 1;
         for(int i = 1; i <= 2; i++)
         {
@@ -27,8 +28,6 @@ public class CarRide {
                 myMap.put(s,k++);
             }
         }
-        //dp[][] record the shortes distance between two nodes in the graph
-        int [][]dp = new int[39][39];
         for(int i = 1; i <= 38; i++)
         {
             for(int j = 1; j <= 38; j++)
