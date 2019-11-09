@@ -26,6 +26,24 @@ public class Customer implements Serializable {
         this.emailID = emailID;
        // this.wallet = wallet;
     }
+    
+    public static Customer deserialize(String username, String pass)
+    {
+    		ArrayList<Customer> al = new ArrayList<>();	
+    		String path = "./src/application/data.txt";
+    		FileInputStream fis = new FileInputStream(path);
+    		ObjectInputStream ois = new ObjectInputStream(fis);
+    		a1 = (ArrayList<Customer>)ois.readObject(fis);
+    		oos.close();
+    		fis.close();
+    		for(Customer it : al)
+    		{
+    		 	if(it.userName = username && it.password == pass)
+    		 		return it;
+    	 	}
+    	 	return NULL;
+    }	
+
     //Call to display the current balance
     int balance()
     {
