@@ -19,9 +19,14 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="452.0">
                      <children>
                         <TextField fx:id="loginUser" layoutX="75.0" layoutY="113.0" prefHeight="38.0" prefWidth="208.0" promptText="Username" />
-                        <PasswordField fx:id="loginPass" layoutX="75.0" layoutY="193.0" prefHeight="38.0" prefWidth="208.0" promptText="Password" />
-                        <Button layoutX="226.0" layoutY="193.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="57.0" text="Forgot?" />
-                        <Button fx:id="signIn" layoutX="135.0" layoutY="253.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="89.0" text="Sign In" />
+                        <PasswordField fx:id="loginPass" layoutX="75.0" layoutY="186.0" prefHeight="38.0" prefWidth="208.0" promptText="Password" />
+                        <Button layoutX="226.0" layoutY="186.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="57.0" text="Forgot?" />
+                        <Button fx:id="signIn" layoutX="135.0" layoutY="253.0" mnemonicParsing="false" onAction="#login" prefHeight="38.0" prefWidth="89.0" text="Sign In" />
+                        <Label fx:id="exist" layoutX="38.0" layoutY="297.0" style="-fx-opacity: 0;" text="User does not exist. Please register." textFill="#ee0000">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>

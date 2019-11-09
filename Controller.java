@@ -36,14 +36,20 @@ public class Controller implements Initializable {
 	@FXML
 	private TextField regEmail;
 	@FXML
+	private TextField loginUser;
+	@FXML
+	private TextField loginPass;
+	@FXML
 	private TextField regName;
 	@FXML
 	private Label error;
+	@FXML
+	private Label exist;
 	
 		
 	double[] arrX = new double[8];
 	double[] arrY = new double[8];
-	int i=0;
+	int i=0;	
 	
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -110,15 +116,12 @@ public class Controller implements Initializable {
     
     @SuppressWarnings("unchecked")
 	@FXML
-    void register(ActionEvent event) {
-    	
-    	
-    	
+    void register(ActionEvent event) throws ClassNotFoundException {	
     	Customer customer = new Customer(regName.getText(),regUser.getText(),regPass.getText(),regPhone.getText(),regEmail.getText());
-		ArrayList<Customer> al = new ArrayList<>();
+    	ArrayList<Customer> al = new ArrayList<>();
 		try
 		{
-			String path = "./src/application/data.txt";
+		String path = "./src/application/data.ser";
 			FileInputStream fis = new FileInputStream(path);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			al = (ArrayList<Customer>)ois.readObject();
@@ -147,12 +150,52 @@ public class Controller implements Initializable {
 			e.printStackTrace();
 			System.out.println("3");
 		}
-		
-                
-		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);
-   	
-}
-    		
+		     
+		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);         
+    }
+    
+    @FXML
+    void login(ActionEvent event)
+    {
+    	Customer c1 = null;
+    	try {
+    		String username = loginUser.getText();
+    		String pass = loginPass.getText();
+			ArrayList<Customer> al = new ArrayList<>();	
+    		String path = "./src/application/data.ser";
+    		FileInputStream fis = new FileInputStream(path);
+    		ObjectInputStream ois = new ObjectInputStream(fis);
+    		al = (ArrayList<Customer>)ois.readObject();
+    		System.out.println(al);
+    		ois.close();
+    		fis.close();
+    		for(Customer it : al)
+    		{
+    			System.out.print(it.name + it.userName +  it.password+it.emailID);
+    		 	if(username.equals(it.userName) && pass.equals(it.password))
+    		 	{
+    		 		c1 = it;
+    		 	}
+    	 	}
+    	 	
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("IOException dika rha hai");
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			System.out.println("Why is the class not found?");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	if(c1 == null)
+    	{
+    			exist.setOpacity(1.00);
+    	}
+    	else
+    	{
+    		System.out.println("Well");
+    	}
+    }
   
 		
    }
