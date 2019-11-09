@@ -114,42 +114,42 @@ public class Controller implements Initializable {
     	
     	
     	
-    		Customer customer = new Customer(regName.getText(),regUser.getText(),regPass.getText(),regPhone.getText(),regEmail.getText());
-    		ArrayList<Customer> al = new ArrayList<>();
-    		try
-    		{
-    			String path = "./src/application/data.txt";
-    			FileInputStream fis = new FileInputStream(path);
-    			ObjectInputStream ois = new ObjectInputStream(fis);
-    			a1 = (ArrayList<Customer>ois.readObject(fis);
-    			oos.close();
-    			fis.close();
-    			a1.add(customer);
-    			FileOutputStream file = new FileOutputStream(path); 
-                ObjectOutputStream out = new ObjectOutputStream(file);  
-                out.writeObject(a1);       
-                out.close(); 
-                file.close(); 
-    			
-    			 
-    		}
-    		catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("1");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("2");
-			} 
-    		/*catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("3");
-			}
-    		*/
-                    
-    		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);
+    	Customer customer = new Customer(regName.getText(),regUser.getText(),regPass.getText(),regPhone.getText(),regEmail.getText());
+		ArrayList<Customer> al = new ArrayList<>();
+		try
+		{
+			String path = "./src/application/data.txt";
+			FileInputStream fis = new FileInputStream(path);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			al = (ArrayList<Customer>)ois.readObject();
+			ois.close();
+			fis.close();
+			al.add(customer);
+			FileOutputStream file = new FileOutputStream(path); 
+            ObjectOutputStream out = new ObjectOutputStream(file);  
+            out.writeObject(al);       
+            out.close(); 
+            file.close(); 
+			
+			 
+		}
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("1");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("2");
+		} 
+		catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("3");
+		}
+		
+                
+		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);
    	
 }
     		
