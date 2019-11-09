@@ -119,18 +119,15 @@ public class Controller implements Initializable {
     		try
     		{
     			String path = "./src/application/data.txt";
-    			File f = new File(path);
-    			if(f.canWrite())
-    			{
-    				System.out.println(f.getAbsolutePath());
-    			}
-    			Customer customer1 = new Customer("wqer","qwe","qwer","qwer","qwre");
+    			FileInputStream fis = new FileInputStream(path);
+    			ObjectInputStream ois = new ObjectInputStream(fis);
+    			a1 = (ArrayList<Customer>ois.readObject(fis);
+    			oos.close();
+    			fis.close();
+    			a1.add(customer);
     			FileOutputStream file = new FileOutputStream(path); 
-                ObjectOutputStream out = new ObjectOutputStream(file); 
-                  
-                // Method for serialization of object 
-                out.writeObject(customer1); 
-                  
+                ObjectOutputStream out = new ObjectOutputStream(file);  
+                out.writeObject(a1);       
                 out.close(); 
                 file.close(); 
     			
@@ -153,53 +150,9 @@ public class Controller implements Initializable {
     		*/
                     
     		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);
-    		
-    		
-              
-
-           	
-    	
-    	
-    	
-    	
+   	
 }
     		
   
 		
    }
-    
-    //use bindBidirectional for syncing windows
-    //Customer class should implement Serializable
-  	/*try { 
-	
-	Cab cab1;
-	
-    // Reading the object from a file 
-    FileInputStream file = new FileInputStream 
-                                 ("f.txt"); 
-    ObjectInputStream in = new ObjectInputStream 
-                                 (file); 
-
-    // Method for deserialization of object 
-    cab1 = (Cab)in.readObject(); 
-
-    in.close(); 
-    file.close(); 
-   
-    System.out.println(cab1);
-    Cab.addToMap(pane, cab1);
-
-    System.out.println(cab1.customer + cab1.dest );
-    Cab cab2 = new Cab(cab1.customer,cab1.dest);
-    Cab.addToMap(pane, cab2);
-   
-
-} 
-
-catch (IOException ex) { 
-    System.out.println("IOException is caught"); 
-} 
-catch (ClassNotFoundException ex) { 
-    System.out.println("ClassNotFoundException" + 
-                        " is caught"); 
-} */
