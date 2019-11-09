@@ -118,23 +118,21 @@ public class Controller implements Initializable {
     		ArrayList<Customer> al = new ArrayList<>();
     		try
     		{
-    			File f = new File("data.txt");
+    			String path = "./src/application/data.txt";
+    			File f = new File(path);
     			if(f.canWrite())
     			{
-    				System.out.println("5");
+    				System.out.println(f.getAbsolutePath());
     			}
-    			FileInputStream fis = new FileInputStream("data.txt");
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                al.add(customer);
-                al = (ArrayList<Customer>)ois.readObject();
-                ois.close();
-                fis.close();
-    			
-                FileOutputStream fos = new FileOutputStream("data.txt");
-                ObjectOutputStream oos = new ObjectOutputStream(fos);
-                oos.writeObject(al);
-                oos.close();
-                fos.close();
+    			Customer customer1 = new Customer("wqer","qwe","qwer","qwer","qwre");
+    			FileOutputStream file = new FileOutputStream(path); 
+                ObjectOutputStream out = new ObjectOutputStream(file); 
+                  
+                // Method for serialization of object 
+                out.writeObject(customer1); 
+                  
+                out.close(); 
+                file.close(); 
     			
     			 
     		}
@@ -147,15 +145,19 @@ public class Controller implements Initializable {
 				e.printStackTrace();
 				System.out.println("2");
 			} 
-    		catch (ClassNotFoundException e) {
+    		/*catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("3");
 			}
-    		
+    		*/
                     
     		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);
-    	
+    		
+    		
+              
+
+           	
     	
     	
     	
