@@ -9,17 +9,21 @@ import java.io.*;
 import application.Main.Cab;
 import application.Customer;
 import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 
 public class Controller implements Initializable {
 
@@ -42,21 +46,47 @@ public class Controller implements Initializable {
 	@FXML
 	private TextField regName;
 	@FXML
+	private StackPane root;
+	@FXML
+	private AnchorPane loginPage;	
+	@FXML
+	private Rectangle overlay;	
+	@FXML
 	private Label error;
 	@FXML
 	private Label exist;
+	@FXML
+	private Label userWelc;
+	@FXML
+    private Button menu;
+    @FXML
+    private AnchorPane navList;
 	
 		
 	double[] arrX = new double[8];
 	double[] arrY = new double[8];
 	int i=0;	
 	
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	
-    	
-    	
+	@Override
+    public void initialize(URL url, ResourceBundle rb) {
+    //navList.setItems(FXCollections.observableArrayList("Red","Yellow","Blue"));
+        prepareSlideMenuAnimation();
+    }    
+
+    private void prepareSlideMenuAnimation() {
+        TranslateTransition openNav=new TranslateTransition(new Duration(350), navList);
+        openNav.setToX(0);
+        TranslateTransition closeNav=new TranslateTransition(new Duration(350), navList);
+        menu.setOnAction((ActionEvent evt)->{
+            if(navList.getTranslateX()!=0){
+                openNav.play();
+            }else{
+                closeNav.setToX(-(navList.getWidth()));
+                closeNav.play();
+            }
+        });
     }
+
     @FXML
     void btn(ActionEvent event) {
     	// System.out.println(this+"called");
@@ -87,32 +117,7 @@ public class Controller implements Initializable {
          System.out.print(event.getY() + "\n");
 		
    }
-    @FXML
-    void btn1(ActionEvent event) {
-    	
-    	
-    	try {
-    		
-    		Stage stage = new Stage();
-			Group root = new Group();
-		 	
-		    root.getChildren().add(FXMLLoader.load(getClass().getResource("Login.fxml")));
-		    
-			
-			Scene scene = new Scene(root,358,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			stage.setScene(scene);
-			stage.show();
-			
-			
-			
-			
-			
-	} catch(Exception e) {
-		e.printStackTrace();
-	}
-    }
-    
+   
     
     @SuppressWarnings("unchecked")
 	@FXML
@@ -151,7 +156,7 @@ public class Controller implements Initializable {
 			System.out.println("3");
 		}
 		     
-		System.out.print(customer.name + customer.userName + customer.emailID + customer.password);         
+		//System.out.print(customer.name + customer.userName + customer.emailID + customer.password);         
     }
     
     @FXML
@@ -166,12 +171,12 @@ public class Controller implements Initializable {
     		FileInputStream fis = new FileInputStream(path);
     		ObjectInputStream ois = new ObjectInputStream(fis);
     		al = (ArrayList<Customer>)ois.readObject();
-    		System.out.println(al);
+    		//System.out.println(al);
     		ois.close();
     		fis.close();
     		for(Customer it : al)
     		{
-    			System.out.print(it.name + it.userName +  it.password+it.emailID);
+    			//System.out.print(it.name + it.userName +  it.password+it.emailID);
     		 	if(username.equals(it.userName) && pass.equals(it.password))
     		 	{
     		 		c1 = it;
@@ -193,9 +198,17 @@ public class Controller implements Initializable {
     	}
     	else
     	{
+    		
+    		userWelc.setText("Welcome " + c1.userName);
+    		exist.setOpacity(0.00);
+    		root.getChildren().remove(overlay);
+    		loginPage.getChildren().clear();
+    		//overlay.setVisible(false);
     		System.out.println("Well");
     	}
     }
+    
+    
   
 		
    }

@@ -32,7 +32,7 @@ public class Main extends Application {
 			    root.getChildren().add(FXMLLoader.load(getClass().getResource("MapFXML.fxml")));
 			    
 				
-				Scene scene = new Scene(root,600,800);
+				Scene scene = new Scene(root,860,800);
 				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				primaryStage.setScene(scene);
 				primaryStage.show();
