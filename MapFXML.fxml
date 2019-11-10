@@ -18,46 +18,24 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <StackPane fx:id="root" prefHeight="789.0" prefWidth="860.0" style="-fx-background-color: #ff0000;">
          <children>
-            <Rectangle fx:id="overlay" arcHeight="5.0" arcWidth="5.0" fill="#858686" height="550.0" stroke="BLACK" strokeType="INSIDE" width="617.0" />
-            <AnchorPane prefHeight="789.0" prefWidth="200.0">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="789.0" prefWidth="200.0" style="-fx-background-color: #1e90ff;">
-                     <children>
-                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Your Current Balance:" textAlignment="CENTER">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <Label text="Label" textAlignment="CENTER">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Add Balance" />
-                        <TextField maxWidth="175.0" prefWidth="45.0" />
-                        <Button mnemonicParsing="false" text="Confirm" />
-                     </children>
-                  </VBox>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="loginPage">
                <children>
-                  <TabPane layoutX="130.0" layoutY="119.0" prefHeight="439.0" prefWidth="358.0" tabClosingPolicy="UNAVAILABLE">
+                  <Rectangle fx:id="overlay" arcHeight="5.0" arcWidth="5.0" fill="#858686" height="785.0" stroke="BLACK" strokeType="INSIDE" width="860.0" />
+                  <TabPane layoutX="98.0" layoutY="164.0" prefHeight="416.0" prefWidth="694.0" tabClosingPolicy="UNAVAILABLE">
                      <tabs>
                         <Tab text="Login">
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="452.0">
                                  <children>
                                     <TextField fx:id="loginUser" layoutX="75.0" layoutY="113.0" prefHeight="38.0" prefWidth="208.0" promptText="Username" />
-                                    <PasswordField fx:id="loginPass" layoutX="75.0" layoutY="186.0" prefHeight="38.0" prefWidth="208.0" promptText="Password" />
-                                    <Button layoutX="226.0" layoutY="186.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="57.0" text="Forgot?" />
-                                    <Button fx:id="signIn" layoutX="135.0" layoutY="253.0" mnemonicParsing="false" onAction="#login" prefHeight="38.0" prefWidth="89.0" text="Sign In" />
-                                    <Label fx:id="exist" layoutX="38.0" layoutY="297.0" style="-fx-opacity: 0;" text="User does not exist. Please register." textFill="#ee0000">
+                                    <PasswordField fx:id="loginPass" layoutX="387.0" layoutY="113.0" prefHeight="38.0" prefWidth="208.0" promptText="Password" />
+                                    <Button layoutX="538.0" layoutY="113.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="57.0" text="Forgot?" />
+                                    <Button fx:id="signIn" layoutX="303.0" layoutY="201.0" mnemonicParsing="false" onAction="#login" prefHeight="38.0" prefWidth="89.0" text="Sign In" />
+                                    <Label fx:id="exist" layoutX="208.0" layoutY="260.0" style="-fx-opacity: 0;" text="User does not exist. Please register." textFill="#ee0000">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -70,17 +48,18 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TextField fx:id="regName" layoutX="75.0" layoutY="50.0" prefHeight="38.0" prefWidth="208.0" promptText="Name" />
-                                    <TextField fx:id="regUser" layoutX="75.0" layoutY="100.0" prefHeight="38.0" prefWidth="208.0" promptText="Username" />
-                                    <PasswordField fx:id="regPass" layoutX="75.0" layoutY="150.0" prefHeight="38.0" prefWidth="208.0" promptText="Password" />
-                                    <TextField fx:id="regPhone" layoutX="75.0" layoutY="200.0" prefHeight="38.0" prefWidth="208.0" promptText="Phone Number" />
-                                    <TextField fx:id="regEmail" layoutX="75.0" layoutY="250.0" prefHeight="38.0" prefWidth="208.0" promptText="Email ID" />
-                                    <Button layoutX="223.0" layoutY="307.0" mnemonicParsing="false" onAction="#register" text="Register" />
+                                    <TextField fx:id="regName" layoutX="75.0" layoutY="56.0" prefHeight="38.0" prefWidth="208.0" promptText="Name" />
+                                    <TextField fx:id="regUser" layoutX="75.0" layoutY="106.0" prefHeight="38.0" prefWidth="208.0" promptText="Username" />
+                                    <PasswordField fx:id="regPass" layoutX="351.0" layoutY="56.0" prefHeight="38.0" prefWidth="208.0" promptText="Password" />
+                                    <TextField fx:id="regPhone" layoutX="351.0" layoutY="106.0" prefHeight="38.0" prefWidth="208.0" promptText="Phone Number" />
+                                    <TextField fx:id="regEmail" layoutX="75.0" layoutY="155.0" prefHeight="38.0" prefWidth="208.0" promptText="Email ID" />
+                                    <Button layoutX="258.0" layoutY="258.0" mnemonicParsing="false" onAction="#register" prefHeight="53.0" prefWidth="120.0" text="Register" />
                                     <Label fx:id="error" layoutX="75.0" layoutY="311.0" style="-fx-opacity: 0;" text="Please Fill All Details" textFill="#f50606">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
+                                    <TextField fx:id="regLoc" layoutX="351.0" layoutY="155.0" prefHeight="38.0" prefWidth="208.0" promptText="City" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -124,7 +103,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="789.0" prefWidth="200.0" style="-fx-background-color: #1e90ff;">
                <children>
-                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Welcome," textAlignment="CENTER">
+                  <Label fx:id="userWelc" alignment="TOP_CENTER" contentDisplay="CENTER" text="Welcome," textAlignment="CENTER">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -134,9 +113,51 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Wallet : " />
-                  <Button mnemonicParsing="false" text="Add Balance" />
-                  <Label text="Travel" />
+                  <Button fx:id="travel" mnemonicParsing="false" styleClass="menuBtn" text="Travel" />
+                  <Button fx:id="wallet" mnemonicParsing="false" prefHeight="25.0" prefWidth="138.0" styleClass="menuBtn" text="Wallet" />
+                  <Button mnemonicParsing="false" styleClass="menuBtn" text="Logout" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="walletOverlay" prefHeight="789.0" prefWidth="200.0" translateX="-200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="789.0" prefWidth="200.0" style="-fx-background-color: #1e90ff;">
+               <children>
+                  <Button fx:id="walBack" mnemonicParsing="false" styleClass="menuBtn" text="Back" />
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Your Current Balance:" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="Label" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField maxWidth="175.0" prefWidth="45.0" styleClass="textField" />
+                  <Button mnemonicParsing="false" styleClass="menuBtn" text="Confirm" />
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="travelOverlay" prefHeight="789.0" prefWidth="200.0" translateX="-200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="789.0" prefWidth="200.0" style="-fx-background-color: #1e90ff;">
+               <children>
+                  <Button fx:id="travBack" mnemonicParsing="false" styleClass="menuBtn" text="Back" />
+                  <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Book a cab" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label text="Travel To" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField maxWidth="175.0" prefWidth="45.0" styleClass="textField" />
+                  <Button mnemonicParsing="false" styleClass="menuBtn" text="Confirm" />
                </children>
             </VBox>
          </children>

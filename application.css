@@ -1,1 +1,19 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.menuBtn{
+	-fx-background-color: #1e90ff;
+	-fx-font-size:24;
+}
+.textField{
+	-fx-background-color: #055eb7;
+	-fx-font-size:24;
+}
+.menuBtn:hover,
+.menuBtn:focus {
+  -fx-background-color: #2079b0;
+}
+.textField:hover,
+.textField:focus {
+  -fx-background-color: #055eb7;
+  -fx-text-inner-color : white;
+  -fx-font-size:24;
+}

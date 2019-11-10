@@ -34,6 +34,8 @@ public class Controller implements Initializable {
 	@FXML
 	private TextField regUser;
 	@FXML
+	private TextField regLoc;
+	@FXML
 	private TextField regPass;
 	@FXML
 	private TextField regPhone;
@@ -59,8 +61,20 @@ public class Controller implements Initializable {
 	private Label userWelc;
 	@FXML
     private Button menu;
+	@FXML
+    private Button wallet;
+	@FXML
+    private Button travel;
+	@FXML
+    private Button walBack;
+	@FXML
+    private Button travBack;
     @FXML
     private AnchorPane navList;
+    @FXML
+    private AnchorPane travelOverlay;
+    @FXML
+    private AnchorPane walletOverlay;
 	
 		
 	double[] arrX = new double[8];
@@ -85,6 +99,51 @@ public class Controller implements Initializable {
                 closeNav.play();
             }
         });
+        
+        
+        TranslateTransition openWal=new TranslateTransition(new Duration(350), walletOverlay);
+        openWal.setToX(0);
+        TranslateTransition closeWal=new TranslateTransition(new Duration(350), walletOverlay);
+       
+         wallet.setOnAction((ActionEvent evt)->{
+        	System.out.println("in wallet");
+            if(walletOverlay.getTranslateX()!=0){
+                openWal.play();
+            }
+        });
+        walBack.setOnAction((ActionEvent evt)->{
+        	
+                closeWal.setToX(-(walletOverlay.getWidth()));
+                closeWal.play();
+           
+            
+        });
+        
+        TranslateTransition openTrav=new TranslateTransition(new Duration(350), travelOverlay);
+        openTrav.setToX(0);
+        TranslateTransition closeTrav=new TranslateTransition(new Duration(350), travelOverlay);
+       
+        travel.setOnAction((ActionEvent evt)->{
+        	System.out.println("in wallet");
+            if(travelOverlay.getTranslateX()!=0){
+                openTrav.play();
+                Cab cab = new Cab("Azure Rathalos", "Charge Blade");
+         		int[] arrX = {207,264,410,457,517,565,522,470};
+    			int[] arrY = {759,741,703,652,590,512,483,542};
+    			System.out.println(cab);
+         		Cab.addToMap(pane, cab);
+         		Cab.drop(cab,arrX,arrY);
+                
+            }
+        });
+        travBack.setOnAction((ActionEvent evt)->{
+        	
+                closeTrav.setToX(-(travelOverlay.getWidth()));
+                closeTrav.play();
+           
+            
+        });
+        
     }
 
     @FXML
@@ -92,18 +151,18 @@ public class Controller implements Initializable {
     	// System.out.println(this+"called");
      	try {
      		Cab cab = new Cab("Azure Rathalos", "Charge Blade");
-     		int[] arrX = {118, 151, 233, 262,295, 323, 295, 267, 268, 242};
-			int[] arrY = {431, 421, 402, 370,335, 291, 276, 311, 310, 284};
-     		
+     		int[] arrX = {207,264,410,457,517,565,522,470};
+			int[] arrY = {759,741,703,652,590,512,483,542};
+			System.out.println(cab);
+     		Cab.addToMap(pane, cab);
+     		Cab.drop(cab,arrX,arrY);
      		FileOutputStream fout=new FileOutputStream("f.txt");  
      		  ObjectOutputStream out=new ObjectOutputStream(fout);  
      		  out.writeObject(cab);  
      		  out.flush();  
      		  //closing the stream  
      		  out.close();  
-     		 System.out.println(cab);
-     		Cab.addToMap(pane, cab);
-     		Cab.drop(cab,arrX,arrY);
+     		 
      	}catch(Exception e){System.out.println(e);}
  		System.out.println(Arrays.toString(arrX));
  		System.out.println(Arrays.toString(arrY));
@@ -122,7 +181,7 @@ public class Controller implements Initializable {
     @SuppressWarnings("unchecked")
 	@FXML
     void register(ActionEvent event) throws ClassNotFoundException {	
-    	Customer customer = new Customer(regName.getText(),regUser.getText(),regPass.getText(),regPhone.getText(),regEmail.getText());
+    	Customer customer = new Customer(regName.getText(),regLoc.getText(),regUser.getText(),regPass.getText(),regPhone.getText(),regEmail.getText());
     	ArrayList<Customer> al = new ArrayList<>();
 		try
 		{
@@ -142,16 +201,16 @@ public class Controller implements Initializable {
 			 
 		}
 		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			 
 			e.printStackTrace();
 			System.out.println("1");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			System.out.println("2");
 		} 
 		catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			System.out.println("3");
 		}
@@ -184,12 +243,12 @@ public class Controller implements Initializable {
     	 	}
     	 	
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			System.out.println("IOException dika rha hai");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			System.out.println("Why is the class not found?");
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
     	if(c1 == null)
@@ -204,7 +263,7 @@ public class Controller implements Initializable {
     		root.getChildren().remove(overlay);
     		loginPage.getChildren().clear();
     		//overlay.setVisible(false);
-    		System.out.println("Well");
+    		Customer.print(c1);
     	}
     }
     

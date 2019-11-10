@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class Customer implements Serializable {
     String name;
-     int id;
      String currentLocation;
      String destination;
      String userName;
@@ -22,10 +21,10 @@ public class Customer implements Serializable {
      static int wallet;
     //COMMENT THIS SHIT LATER  
     //Change destination, CurrentLocation to null;
-    public Customer(String name, String userName, String password, String phoneNumber, String emailID)
+    public Customer(String name, String currentLocation, String userName, String password, String phoneNumber, String emailID)
     {
         this.name = name;
-       // this.currentLocation = currentLocation;
+        this.currentLocation = currentLocation;
         //this.destination = destination;
         this.userName = userName;
         this.password = password;
@@ -47,5 +46,10 @@ public class Customer implements Serializable {
     public void addBalance(Customer customer,int incr)
     {
         Customer.wallet += incr;
-    }  
+    } 
+    public static void print(Customer customer){
+    	System.out.print(customer.name + ' ' +customer.userName + ' ' + customer.password + ' ' + customer.emailID + ' ' + customer.currentLocation);    
+    	
+    	
+    }
 }
